@@ -3,7 +3,7 @@ import { formatBuildInfo, greet, pipelineStatus } from "./greeting";
 
 describe("greet", () => {
   it("greets a named person", () => {
-    expect(greet("Craftware")).toBe("Hello, Craftware!");
+    expect(greet("Craftware")).toBe("Hello,TestCraftware!");
   });
 
   it("falls back when the name is empty", () => {
