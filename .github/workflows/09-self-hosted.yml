@@ -1,0 +1,13 @@
+name: 09 Self-hosted
+
+on:
+  workflow_dispatch:
+permissions:
+  contents: read
+
+jobs:
+  on-prem:
+    runs-on: self-hosted
+    steps:
+      - uses: actions/checkout@v4
+      - run: echo "Running on $(hostname) inside our network"

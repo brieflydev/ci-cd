@@ -1,0 +1,75 @@
+.page {
+  min-height: 100vh;
+  display: grid;
+  place-items: center;
+  padding: 2rem;
+  background:
+    radial-gradient(ellipse at 20% 0%, #1e3a5f 0%, transparent 50%),
+    radial-gradient(ellipse at 80% 100%, #0f766e 0%, transparent 45%),
+    #0b1220;
+  color: #e8eef7;
+}
+
+.main {
+  max-width: 36rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.eyebrow {
+  margin: 0;
+  font-size: 0.85rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #7dd3c7;
+  font-family: var(--font-geist-mono), monospace;
+}
+
+.title {
+  margin: 0;
+  font-size: clamp(2rem, 5vw, 3rem);
+  line-height: 1.15;
+  font-family: var(--font-geist-sans), system-ui, sans-serif;
+}
+
+.lead {
+  margin: 0;
+  font-size: 1.1rem;
+  line-height: 1.6;
+  color: #b6c4d8;
+}
+
+.meta {
+  margin: 1.5rem 0 0;
+  display: grid;
+  gap: 0.75rem;
+  padding: 1rem 1.25rem;
+  border: 1px solid rgba(125, 211, 199, 0.25);
+  border-radius: 0.75rem;
+  background: rgba(15, 23, 42, 0.55);
+}
+
+.meta div {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  font-size: 0.95rem;
+}
+
+.meta dt {
+  color: #8fa3bc;
+}
+
+.meta dd {
+  margin: 0;
+  font-family: var(--font-geist-mono), monospace;
+}
+
+.statusGreen {
+  color: #4ade80;
+}
+
+.statusRed {
+  color: #f87171;
+}

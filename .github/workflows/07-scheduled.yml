@@ -1,0 +1,29 @@
+name: 07 Scheduled
+
+on:
+  schedule:
+    - cron: "0 8 * * 1"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  heartbeat:
+    name: Scheduled heartbeat
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Show trigger & variables
+        env:
+          GREETING: ${{ vars.WORKSHOP_GREETING }}
+        run: |
+          echo "Event:     ${{ github.event_name }}"
+          echo "UTC time:  $(date -u '+%Y-%m-%d %H:%M:%S')"
+          if [ -n "$GREETING" ]; then
+            echo "Variable:  $GREETING"
+          else
+            echo "Variable:  (WORKSHOP_GREETING not set — open Settings → Variables)"
+          fi

@@ -1,0 +1,48 @@
+name: 08 Environments
+
+on:
+  workflow_dispatch:
+    inputs:
+      target:
+        description: "Environment to simulate a deploy into"
+        required: true
+        type: choice
+        options:
+          - staging
+          - production
+        default: staging
+
+permissions:
+  contents: read
+
+jobs:
+  deploy:
+    name: Deploy to ${{ inputs.target }}
+    runs-on: ubuntu-latest
+    environment: ${{ inputs.target }}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Resolve config from vars / secrets
+        id: config
+        env:
+          ENV_URL: ${{ vars.DEPLOY_URL }}
+          DEMO_TOKEN: ${{ secrets.WORKSHOP_DEMO_TOKEN }}
+        run: |
+          echo "Environment: ${{ inputs.target }}"
+          echo "DEPLOY_URL var: ${ENV_URL:-'(not set — add environment variable DEPLOY_URL)'}"
+
+          if [ -n "$DEMO_TOKEN" ]; then
+            echo "Secret WORKSHOP_DEMO_TOKEN is present (value is masked by Actions)."
+            # Intentionally print — GitHub should mask it in the log if it matches the secret.
+            echo "Masked probe: $DEMO_TOKEN"
+          else
+            echo "Secret WORKSHOP_DEMO_TOKEN is missing for this environment."
+            echo "Set it under Settings → Environments → ${{ inputs.target }} → Secrets."
+          fi
+
+      - name: Simulate deploy
+        run: |
+          echo "Pretend we just deployed commit ${{ github.sha }} to ${{ inputs.target }}."
+          echo "In a real pipeline this job would call your host/API using the env secret."
